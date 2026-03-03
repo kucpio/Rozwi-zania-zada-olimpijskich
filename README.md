@@ -5,7 +5,7 @@ Repozytorium zawiera autorskie rozwiązania wybranych zadań z:
 - Olimpiady Informatycznej (OI)
 - Potyczek Algorytmicznych
 
-Rozwiązania mają charakter konkursowy – kod jest pisany pod wydajność oraz limity czasowe i pamięciowe, dlatego w większości przypadków nie zawiera komentarzy. Struktura i styl implementacji odpowiadają standardom programowania stosowanym podczas zawodów algorytmicznych.
+Rozwiązania mają charakter konkursowy – implementacje zostały przygotowane w stylu stosowanym podczas zawodów algorytmicznych. Kod nie zawiera komentarzy, ponieważ w warunkach konkursowych nie są one wymagane i ich pisanie stanowi dodatkowy koszt czasowy. Same rozwiązania zostały zaprojektowane tak, aby były maksymalnie efektywne pod względem złożoności czasowej i pamięciowej, zgodnie z rygorystycznymi limitami typowymi dla Olimpiady Informatycznej i Potyczek Algorytmicznych.
 
 Pełne treści zadań dostępne są w serwisie:
 https://szkopul.edu.pl
