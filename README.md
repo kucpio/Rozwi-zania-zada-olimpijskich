@@ -4,279 +4,274 @@ Repozytorium zawiera rozwiązania wybranych zadań z:
 - Olimpiady Informatycznej (OI)
 - Potyczek Algorytmicznych
 
-To rozwiązania konkursowe: kod jest pisany pod wydajność, a nie czytelność, dlatego w większości przypadków nie zawiera komentarzy.
+Kod ma charakter konkursowy:
+- pisany pod wydajność,
+- bez komentarzy,
+- zoptymalizowany pod limity czasowe i pamięciowe.
 
-Pelne tresci zadan mozna znalezc w serwisie Szkopul:
+Pelne tresci zadan dostepne sa w serwisie Szkopul:
 https://szkopul.edu.pl
 
----
+------------------------------------------------------------
 
-## Srodowisko
+SRODOWISKO
 
 Jezyk: C++17
 
-Przykladowa kompilacja i uruchomienie:
+Przykladowa kompilacja:
 
-```bash
 g++ -std=c++17 -O2 solution.cpp -o sol
 ./sol < input.txt
 
-📚 Lista zadań i zastosowane algorytmy
+------------------------------------------------------------
+
+OPIS ZADAN I ROZWIAZAN
+
+------------------------------------------------------------
 
 1. Rozklad Fibonacciego
 
-Opis problemu
+Opis problemu:
+Dana jest liczba k. W jednym kroku mozna przejsc do wartosci |k - F|,
+gdzie F jest dowolna liczba Fibonacciego. Nalezy wyznaczyc minimalna
+liczbe krokow potrzebnych do sprowadzenia k do zera.
 
-Dana jest liczba k. W jednym kroku mozna przejsc do wartosci |k - F|, gdzie F jest dowolna liczba Fibonacciego. Nalezy wyznaczyc minimalna liczbe krokow potrzebnych do sprowadzenia k do zera.
+Idea rozwiazania:
+Najpierw generowane sa liczby Fibonacciego w zakresie typu long long.
+W kazdym kroku wybierana jest taka liczba F, ktora minimalizuje
+wartosc |k - F|. Proces powtarzany jest do momentu uzyskania zera.
+Strategia ma charakter zachlanny (greedy).
 
-Idea rozwiazania
+Zastosowane techniki:
+- preprocessing liczb Fibonacciego
+- algorytm zachlanny
+- operacje na long long
 
-Najpierw generujemy liczby Fibonacciego w zakresie typu long long. W kazdym kroku wybieramy taka liczbe F, ktora minimalizuje wartosc |k - F|. Proces powtarzamy az do uzyskania zera.
-
-Jest to strategia zachlanna (greedy).
-
-Zastosowane techniki
-
-preprocessing liczb Fibonacciego
-
-algorytm zachlanny
-
-operacje na long long
-
-Zlozonosc
-
-W praktyce bardzo mala, liczba Fibonaccich jest stala (ok. 90).
+------------------------------------------------------------
 
 2. Szeregowanie czynnosci
 
-Opis problemu
+Opis problemu:
+Dane sa pary liczb (a, b). Nalezy posortowac je wedlug wartosci
+ilorazu a/b. W przypadku remisu decyduje kolejnosc wejsciowa.
 
-Dane sa pary liczb (a, b). Nalezy posortowac je wedlug wartosci ilorazu a/b. W przypadku remisu decyduje kolejnosc wejsciowa.
-
-Idea rozwiazania
-
-Zamiast liczyc a/b bezposrednio (ryzyko bledow precyzji), porownujemy ulamki przez mnozenie krzyzowe:
-
+Idea rozwiazania:
+Zamiast wykonywac dzielenie (co moze powodowac bledy precyzji),
+porownujemy ulamki przez mnozenie krzyzowe:
 a1/b1 < a2/b2 wtedy i tylko wtedy, gdy a1 * b2 < a2 * b1.
-
 Sortowanie realizowane jest przez std::sort z wlasnym komparatorem.
 
-Zastosowane techniki
+Zastosowane techniki:
+- sortowanie O(n log n)
+- porownywanie ulamkow przez mnozenie krzyzowe
+- wlasny comparator
 
-sortowanie O(n log n)
-
-mnozenie krzyzowe zamiast dzielenia
-
-wlasny comparator
-
-Zlozonosc
-
-O(n log n)
+------------------------------------------------------------
 
 3. Tetris Attack
 
-Opis problemu
+Opis problemu:
+Dany jest ciag dlugosci 2n, w ktorym kazda liczba wystepuje
+dokladnie dwa razy. Nalezy symulowac proces dopasowywania par.
 
-Dany jest ciag dlugosci 2n, w ktorym kazda liczba wystepuje dokladnie dwa razy. Nalezy symulowac proces dopasowywania par i raportowac kolejne stany.
-
-Idea rozwiazania
-
-Algorytm wykorzystuje tablice jako stos oraz tablice znacznikow informujaca, czy dany element jest aktualnie aktywny. Operacje sa wykonywane liniowo, bez uzycia zlozonych struktur STL.
-
+Idea rozwiazania:
+Wykorzystana zostaje tablica jako stos oraz dodatkowa tablica
+znacznikow informujaca, czy element jest aktualnie aktywny.
+Algorytm operuje liniowo, bez uzycia ciezkich struktur STL.
 Logika przypomina redukcje nawiasow przy pomocy stosu.
 
-Zastosowane techniki
+Zastosowane techniki:
+- symulacja
+- stos zaimplementowany jako tablica
+- przetwarzanie liniowe
 
-symulacja
-
-stos zaimplementowany jako tablica
-
-przetwarzanie liniowe
-
-Zlozonosc
-
-W praktyce O(n)
+------------------------------------------------------------
 
 4. Trojkaty jednobarwne
 
-Opis problemu
-
+Opis problemu:
 Policzyc liczbe trojkatow w grafie nieskierowanym.
 
-Idea rozwiazania
+Idea rozwiazania:
+Zamiast sprawdzac wszystkie trojki wierzcholkow (O(n^3)),
+liczymy liczbe wszystkich mozliwych trojek:
+n*(n-1)*(n-2)/6,
+a nastepnie odejmujemy te, ktore nie moga tworzyc trojkata,
+wykorzystujac stopnie wierzcholkow.
 
-Zamiast sprawdzac wszystkie trojki wierzcholkow, liczymy liczbe wszystkich mozliwych trojek wierzcholkow, a nastepnie odejmujemy te, ktore nie moga tworzyc trojkata. Wykorzystujemy stopnie wierzcholkow i kombinatoryke.
+Zastosowane techniki:
+- kombinatoryka
+- liczenie przez dopelnienie
+- analiza stopni wierzcholkow
 
-Zastosowane techniki
-
-kombinatoryka
-
-liczenie przez dopelnienie
-
-analiza stopni wierzcholkow
-
-Zlozonosc
-
+Zlozonosc:
 O(n + m)
+
+------------------------------------------------------------
 
 5. Wiedzmak
 
-Opis problemu
+Opis problemu:
+Najkrotsza sciezka w grafie, gdzie kazda krawedz ma koszt oraz
+wymaga posiadania okreslonych umiejetnosci. Umiejetnosci mozna
+zdobywac w miastach.
 
-Najkrotsza sciezka w grafie, gdzie krawedzie wymagaja posiadania okreslonych umiejetnosci, a umiejetnosci mozna zdobywac w miastach.
+Idea rozwiazania:
+Zastosowana zostaje Dijkstra na grafie stanow.
+Stan to para (miasto, maska_umiejetnosci).
+Maska reprezentowana jest jako bitmask.
+Przejscie krawedzia mozliwe jest tylko wtedy, gdy aktualna maska
+zawiera wszystkie wymagane bity.
 
-Idea rozwiazania
+Zastosowane techniki:
+- Dijkstra
+- bitmaski
+- graf stanow
+- priority_queue
 
-Wykorzystujemy Dijkstre na grafie stanow. Stan to para (miasto, maska_umiejetnosci). Maska reprezentuje zbior zdobytych umiejetnosci w postaci bitmaski.
-
-Przejscie krawedzia jest mozliwe tylko wtedy, gdy aktualna maska zawiera wszystkie wymagane bity.
-
-Zastosowane techniki
-
-Dijkstra
-
-bitmaski
-
-graf stanow
-
-Zlozonosc
-
-W przyblizeniu O((n * 2^p + m * 2^p) log(n * 2^p)), gdzie p <= 13.
+------------------------------------------------------------
 
 6. Zima
 
-Opis problemu
+Opis problemu:
+Drzewo z wagami krawedzi. Parzystosc wag wplywa na sposob
+liczenia wyniku. Nalezy wyznaczyc najlepsza sciezke,
+ktora maksymalnie koryguje wynik globalny.
 
-Drzewo z wagami krawedzi. Parzystosc wag wplywa na sposob liczenia wyniku. Nalezy znalezc najlepsza sciezke, ktora maksymalnie koryguje wynik globalny.
+Idea rozwiazania:
+Najpierw liczona jest suma bazowa.
+Nastepnie DFS oraz DP na drzewie.
+Dla kazdego wierzcholka przechowywane sa dwie najlepsze
+wartosci sciezek schodzacych w dol.
+Z nich budowana jest najlepsza sciezka przechodzaca
+przez wierzcholek.
 
-Idea rozwiazania
+Zastosowane techniki:
+- DFS
+- DP na drzewie
+- motyw srednicy drzewa
 
-Najpierw liczymy sume bazowa. Nastepnie wykonujemy DFS i DP na drzewie, dla kazdego wierzcholka przechowujac dwie najlepsze wartosci sciezek schodzacych w dol. Z nich budujemy najlepsza sciezke przechodzaca przez dany wierzcholek.
-
-Zastosowane techniki
-
-DFS
-
-DP na drzewie
-
-motyw srednicy drzewa
-
-Zlozonosc
-
+Zlozonosc:
 O(n)
+
+------------------------------------------------------------
 
 7. Zajakniecia
 
-Opis problemu
+Opis problemu:
+Dwa ciagi liczb. Nalezy zmaksymalizowac liczbe dopasowanych
+powtorzen tej samej wartosci w obu ciagach.
 
-Dwa ciagi liczb. Nalezy zmaksymalizowac liczbe dopasowanych powtorzen tej samej wartosci w obu ciagach.
+Idea rozwiazania:
+Wyznaczane sa poprzednie wystapienia kazdej wartosci.
+Nastepnie stosowane jest dynamic programming podobne do LCS,
+z dodatkowymi warunkami dotyczacymi poprawnego laczenia par.
 
-Idea rozwiazania
+Zastosowane techniki:
+- DP na sekwencjach
+- poprzednie wystapienia
+- wariant LCS
 
-Wyznaczamy poprzednie wystapienia kazdej wartosci, a nastepnie stosujemy dynamic programming podobne do LCS, z dodatkowymi warunkami dotyczacymi poprawnego laczenia par.
-
-Zastosowane techniki
-
-DP na sekwencjach
-
-poprzednie wystapienia
-
-wariant LCS
+------------------------------------------------------------
 
 8. Zdjecia krasnali
 
-Opis problemu
+Opis problemu:
+Dany graf nieskierowany. Nalezy sprobowac skierowac jego
+krawedzie zgodnie z warunkami konstrukcji.
+Jesli sie nie da, wypisac NIE.
+Jesli sie da, wyznaczyc numeracje wierzcholkow.
 
-Dany graf nieskierowany. Nalezy sprobowac skierowac jego krawedzie zgodnie z warunkami konstrukcji, a nastepnie wyznaczyc numeracje wierzcholkow.
+Idea rozwiazania:
+Najpierw konstruowany jest graf skierowany przy pomocy BFS
+oraz lokalnych warunkow.
+Nastepnie wykonywane jest sortowanie topologiczne
+(algorytm Kahna).
 
-Idea rozwiazania
+Zastosowane techniki:
+- BFS
+- konstrukcja grafu
+- topological sort
 
-Najpierw konstruujemy graf skierowany przy pomocy BFS i warunkow lokalnych. Nastepnie wykonujemy sortowanie topologiczne (algorytm Kahna). Jesli konstrukcja nie jest mozliwa, wypisujemy NIE.
-
-Zastosowane techniki
-
-BFS
-
-konstrukcja grafu
-
-topological sort
-
-Zlozonosc
-
+Zlozonosc:
 O(n + m)
+
+------------------------------------------------------------
 
 9. Drogi rowerowe
 
-Opis problemu
+Opis problemu:
+Graf skierowany. Dla kazdego wierzcholka nalezy policzyc
+wynik zwiazany z osiagalnoscia.
 
-Graf skierowany. Dla kazdego wierzcholka nalezy policzyc wynik zwiazany z osiagalnoscia.
+Idea rozwiazania:
+Najpierw wyznaczane sa silnie spojne skladowe (Kosaraju).
+Budowany jest graf kondensacji (DAG).
+Wykonywane jest sortowanie topologiczne.
+Nastepnie DP po DAG.
 
-Idea rozwiazania
+Zastosowane techniki:
+- SCC (Kosaraju)
+- kondensacja do DAG
+- topological sort
+- DP po DAG
 
-Najpierw wyznaczamy silnie spojne skladowe (Kosaraju). Budujemy graf kondensacji (DAG), wykonujemy sortowanie topologiczne, a nastepnie DP po DAG.
-
-Zastosowane techniki
-
-SCC (Kosaraju)
-
-kondensacja do DAG
-
-topological sort
-
-DP po DAG
-
-Zlozonosc
-
+Zlozonosc:
 O(n + m)
+
+------------------------------------------------------------
 
 10. Marudny Bajtazar
 
-Opis problemu
+Opis problemu:
+Dany jest binarny napis oraz operacje zmiany pojedynczych bitow.
+Po kazdej zmianie nalezy znalezc najmniejsza dlugosc podciagu,
+dla ktorej nie wszystkie mozliwe wzorce wystepuja w napisie.
 
-Dany jest binarny napis oraz operacje zmiany pojedynczych bitow. Po kazdej zmianie nalezy znalezc najmniejsza dlugosc podciagu, dla ktorej nie wszystkie mozliwe wzorce wystepuja w napisie.
+Idea rozwiazania:
+Ograniczamy maksymalna dlugosc do 17.
+Utrzymujemy licznik wystapien wszystkich podciagow dlugosci 1..k.
+Wzorce kodowane sa jako liczby binarne w strukturze
+przypominajacej trie zapisane w tablicy.
+Po zmianie bitu aktualizowane sa tylko lokalne fragmenty.
 
-Idea rozwiazania
+Zastosowane techniki:
+- bitmaski
+- trie w tablicy
+- aktualizacje lokalne
 
-Ograniczamy maksymalna dlugosc do 17. Utrzymujemy licznik wystapien wszystkich podciagow dlugosci 1..k. Wzorce kodujemy jako liczby binarne w strukturze przypominajacej trie zapisane w tablicy.
-
-Po zmianie bitu aktualizujemy tylko lokalnie dotkniete podciagi.
-
-Zastosowane techniki
-
-bitmaski
-
-trie w tablicy
-
-aktualizacje lokalne
+------------------------------------------------------------
 
 11. Minusy
 
-Opis problemu
+Opis problemu:
+Na podstawie ciagu znakow + i - nalezy skonstruowac
+wynikowy zapis z nawiasami i myslnikami.
 
-Na podstawie ciagu znakow + i - nalezy skonstruowac wynikowy ciag z nawiasami i myslnikami zgodnie z przejsciami miedzy znakami.
+Idea rozwiazania:
+Jedno przejscie po danych oraz automat dwustanowy
+okreslajacy, czy aktualnie jestesmy w nawiasie.
 
-Idea rozwiazania
-
-Jedno przejscie po danych oraz automat dwustanowy okreslajacy, czy aktualnie jestesmy w nawiasie.
-
-Zlozonosc
-
+Zlozonosc:
 O(n)
+
+------------------------------------------------------------
 
 12. Bony
 
-Opis problemu
+Opis problemu:
+Symulacja zaznaczania wielokrotnosci liczb oraz rejestrowania
+momentow trafienia na specjalne pozycje.
 
-Symulacja zaznaczania wielokrotnosci liczb oraz rejestrowania momentow trafienia na specjalne pozycje.
+Idea rozwiazania:
+Dla kazdej liczby w przechodzimy po jej wielokrotnosciach,
+oznaczamy jeszcze nieuzyte pozycje oraz zapisujemy trafienia.
+Zapamietywana jest ostatnia sprawdzana wielokrotnosc,
+co daje efekt amortyzacji.
 
-Idea rozwiazania
+Zastosowane techniki:
+- przechodzenie po wielokrotnosciach
+- visited array
+- amortyzacja
 
-Dla kazdej liczby w przechodzimy po jej wielokrotnosciach, oznaczamy jeszcze nieuzyte pozycje oraz zapisujemy trafienia. Dodatkowo zapamietujemy ostatnia sprawdzana wielokrotnosc, co daje efekt amortyzacji.
-
-Zastosowane techniki
-
-przechodzenie po wielokrotnosciach
-
-visited array
-
-amortyzacja
+------------------------------------------------------------
